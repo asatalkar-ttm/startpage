@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" /> -->
+    <!-- Bootstrap CSS -->
+    <!-- Google News API Key d80b93ed851e468eaaa4974611ad2d94 -->
     <link rel="stylesheet" href="assets/build/css/all.min.css">
 
     <title>New Tab</title>
   </head>
-  <body>
+  <body bgcolor="#282923">
     <div class="container">
       <div class="row">
         <div class="col-8 left-col">
-          <h2 class="text-center" id="salutation">Good evening.</h2>
+          <h2 class="text-center" id="salutation">Greetings</h2>
           <div class="searchbox">
             <form class="SearchForm"  method="get" action="https://google.com/search" autocomplete="off">
               <input type="text" name="q" placeholder="Search Google" />
@@ -26,34 +29,20 @@
           <div class="headlines mt-5 row">
             <div class="col-md-10 offset-md-1">
               <h6>Headlines</h6>
-              <ul class="list-unstyled">
+              <ul class="list-unstyled" id="myList">
+<!-- 
                 <li class="card px-4 py-3 mb-2">
                   <a href="https://news.google.com/articles/CAIiEE24Ilek4jRlY0JFK9V0dAUqFQgEKg0IACoGCAowuLUIMNFnMLnhAg?hl=en-US&gl=US&ceid=US%3Aen">
-                    <h5>Robert Mueller’s Bigger Collusion Picture Is Starting to Emerge</h5>
+                    <h5>
+                      Robert Mueller’s Bigger Collusion Picture Is Starting to Emerge
+                    </h5>
                   </a>
-                    <div class="meta">
-                      <span class="site">Slate</span>
-                      <time>4 hours ago</time>
-                    </div>
+                  <div class="meta">
+                    <span class="site">Slate</span>
+                    <time>4 hours ago</time>
+                  </div>
                 </li>
-                <li class="card px-4 py-3 mb-2">
-                  <a href="https://news.google.com/articles/CAIiEE24Ilek4jRlY0JFK9V0dAUqFQgEKg0IACoGCAowuLUIMNFnMLnhAg?hl=en-US&gl=US&ceid=US%3Aen">
-                    <h5>Robert Mueller’s Bigger Collusion Picture Is Starting to Emerge</h5>
-                  </a>
-                    <div class="meta">
-                      <span class="site">Slate</span>
-                      <time>4 hours ago</time>
-                    </div>
-                </li>
-                <li class="card px-4 py-3 mb-2">
-                  <a href="https://news.google.com/articles/CAIiEE24Ilek4jRlY0JFK9V0dAUqFQgEKg0IACoGCAowuLUIMNFnMLnhAg?hl=en-US&gl=US&ceid=US%3Aen">
-                    <h5>Robert Mueller’s Bigger Collusion Picture Is Starting to Emerge</h5>
-                  </a>
-                    <div class="meta">
-                      <span class="site">Slate</span>
-                      <time>4 hours ago</time>
-                    </div>
-                </li>
+ -->
               </ul>
             </div>
           </div>
@@ -61,8 +50,8 @@
         <div class="col-4">
           <div class="right-col">
             <div class="time text-right">
-              <div id="txt">4:19</div>
-              <h5 id="today">Thursday, December 6</h5>
+              <div id="txt">Time</div>
+              <h5 id="today">Day, Date</h5>
             </div>
             <div class="card weather">
               <div class="card-body">
@@ -148,25 +137,70 @@
                     </a>
                   </div>
                   <div class="col">
+                    <a href="https://github.com">
+                      <img height="32" width="32" src="assets/GitHub-Mark/SVG/Octicons-mark-github.svg" />
+                    </a>
+                  </div>
+                  <div class="col">
                     <a href="https://youtube.com">
-                      <img height="32" width="32" src="https://api.statvoo.com/favicon/?url=youtube.com" />
+                      <!-- <img height="32" width="32" src="https://api.statvoo.com/favicon/?url=youtube.com" />  -->
+                      <!-- C:\Users\adityasatalkar\Downloads\youtube_full_color_icon\social\64px\red -->
+                      <img height="32" width="32" src="assets/YouTube_Logo.svg" />
                     </a>
                   </div>
                   <div class="col">
                     <a href="https://netflix.com">
-                      <img height="32" width="32" src="https://api.statvoo.com/favicon/?url=netflix.com" />
+                      <!-- <img height="32" width="32" src="https://api.statvoo.com/favicon/?url=netflix.com" />  -->
+                      <img height="32" width="32" src="assets/Netflix/Netflix_Logo.svg" />
                     </a>
                   </div>
                   <div class="col">
                     <a href="https://photos.google.com">
-                      <img height="32" width="32" src="https://api.statvoo.com/favicon/?url=photos.google.com" />
+                      <!-- <img height="32" width="32" src="https://api.statvoo.com/favicon/?url=photos.google.com" /> -->
+                      <img height="32" width="32" src="assets/Google/Photos/Google_Photos_Logo.svg" />
                     </a>
                   </div>
                   <div class="col">
                     <a href="https://mail.google.com">
-                      <img height="32" width="32" src="https://api.statvoo.com/favicon/?url=mail.google.com" />
+                      <!-- <img height="32" width="32" src="https://api.statvoo.com/favicon/?url=mail.google.com" /> -->
+                      <img height="32" width="32" src="assets/Google/GMail/GMail_Logo.svg" />
                     </a>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mt-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <a href="https://jira.trimble.tools/secure/RapidBoard.jspa?rapidView=3474&projectKey=IPC&selectedIssue=IPC-807&quickFilter=13748">
+                    <!-- <img height="32" width="32" src="https://api.statvoo.com/favicon/?url=mail.google.com" /> -->
+                    <img height="32" width="32" src="assets/JIRA/Jira.png" />
+                  </a>
+                </div>
+                <div class="col">
+                  <a href="https://rancher-new.connectedfleet.io/env/1a153/apps/stacks">
+                    <img height="32" width="32" src="assets/Rancher/Rancher_ThugLife.png" />
+                  </a>
+                </div>
+                <div class="col">
+                  <a href="https://calendar.google.com/calendar/b/2/r?tab=wc">
+                    <img height="32" width="32" src="assets/google-product-logos/logo_calendar_64px.png" />
+                  </a>
+                </div>
+                <div class="col">
+<!--
+                  <a href="https://calendar.google.com/calendar/b/2/r?tab=wc">
+                    <img height="32" width="32" src="assets/google-product-logos/logo_calendar_64px.png" />
+                  </a>
+ -->
+                  <p>hi</p>
+                 </div>
+                <div class="col">
+                  <a href="https://pipeline.devops.connectedfleet.io/#">
+                    <img height="44" width="32" src="assets/Jenkins/Jenkins.png" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -179,75 +213,6 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script src="assets/build/js/jquery.min.js"></script> -->
     <!-- <script src="assets/build/js/all.min.js"></script> -->
-    <script>
-      function startTime() {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var amPM = (h > 11) ? "pm" : "am";
-
-        h = today.getHours() % 12 || 12
-        m = checkTime(m);
-
-        document.getElementById('txt').innerHTML = h + ":" + m;
-        var t = setTimeout(startTime, 500);
-      }
-
-      function checkTime(i) {
-        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-        return i;
-      }
-
-      function checkDate() {
-        var today = new Date();
-        var h = today.getHours();
-
-        var weekday = new Array(7);
-        weekday[0] =  "Sunday";
-        weekday[1] = "Monday";
-        weekday[2] = "Tuesday";
-        weekday[3] = "Wednesday";
-        weekday[4] = "Thursday";
-        weekday[5] = "Friday";
-        weekday[6] = "Saturday";
-        var day = weekday[today.getDay()];
-
-        var month = new Array();
-        month[0] = "January";
-        month[1] = "February";
-        month[2] = "March";
-        month[3] = "April";
-        month[4] = "May";
-        month[5] = "June";
-        month[6] = "July";
-        month[7] = "August";
-        month[8] = "September";
-        month[9] = "October";
-        month[10] = "November";
-        month[11] = "December";
-        var mon = month[today.getMonth()];
-
-        var timeOfDayArray = [
-          [0, 4, "Good night."], 
-          [5, 11, "Good morning."],
-          [12, 17, "Good afternoon."],
-          [18, 22, "Good evening."],
-          [23, 24, "Good night."]
-        ];
-
-        for(var i = 0; i < timeOfDayArray.length; i++){
-          if(h >= timeOfDayArray[i][0] && h <= timeOfDayArray[i][1]){
-            document.getElementById('salutation').innerHTML = timeOfDayArray[i][2];
-          }
-        }
-
-        document.getElementById('today').innerHTML = day + ', ' + mon + ' ' + today.getDate();
-      }
-
-      window.onload = function() {
-        checkDate();
-        startTime();
-      }
-    </script>
+    <script src="js/index.js"></script>
   </body>
 </html>
