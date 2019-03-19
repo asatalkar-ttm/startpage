@@ -246,13 +246,4 @@ window.onload = function() {
 	checkDate();
 	startTime();
 	getNews();
-
-	// if(document.cookie == null || document.cookie == "") {
-	// 	console.log('Cookie : ' + document.cookie);
-	// } else {
-	// 	console.log('Cookie : ' + document.cookie);
-	// 	checkDate();
-	// 	startTime();
-	// 	getNews();
-	// }
 }
