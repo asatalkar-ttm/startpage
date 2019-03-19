@@ -1,3 +1,118 @@
+// function getZipCode() {
+// 	var txt;
+// 	var zipcode = prompt("Please enter your ZipCode:", "");
+// 	document.cookie = "Zipcode="+zipcode;
+// 	txt = document.cookie;
+// 	console.log('Cookie : ' + getCookie());
+// 	// if (zipcode == null || zipcode == "") {
+// 	// 	txt = "User cancelled the prompt.";
+// 	// } else {
+// 	// 	txt = "You entered " + zipcode + ".";
+// 	// }
+// 	get5DaysWeatherForecast(zipcode);
+// }
+
+function setCookie(zipcode, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	var expires = "expires=" + d.toGMTString();
+	document.cookie = zipcode + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(zipcode) {
+	var zip = zipcode + "=";
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(zip) == 0) {
+			return c.substring(zip.length, c.length);
+		}
+	}
+	return "";
+}
+
+function checkCookie() {
+	var zipcode = getCookie("zipcode");
+	if (zipcode != "") {
+		alert("Zipcode : " + zipcode);
+		get5DaysWeatherForecast(zipcode);
+	} else {
+		zipcode = prompt("Please enter your Zipcode:", "");
+		if (zipcode != "" && zipcode != null) {
+			setCookie("zipcode", zipcode, 30);
+		}
+	}
+	get5DaysWeatherForecast(zipcode);
+}
+
+function get5DaysWeatherForecast(zipcode) {
+	var url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + zipcode + '?apikey=xSWrDMQkGsFAsqDv71nMoKRRFlGrCtU5'
+	var req = new Request(url);
+	fetch(req)
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(response) {
+			console.log(response);
+			for (var i = 0; i < 5; i++) {
+				var Maximum = response.DailyForecasts[i].Temperature.Maximum.Value;
+				var Minimum = response.DailyForecasts[i].Temperature.Minimum.Value;
+				var weatherDate = response.DailyForecasts[i].Date;
+
+				var node = document.createElement("div");
+				node.setAttribute("class", "col");
+
+				var outerSpan = document.createElement("span");
+				outerSpan.setAttribute("class", "day");
+				var date = new Date(weatherDate);
+
+				var getNewDate = new Date();
+				var dayOfTheWeek = getDayOfTheWeek(date);
+				var res = "";
+				
+				if (date.getDate() === getNewDate.getDate()) {
+					res = "Today";
+				} else {
+					res = dayOfTheWeek.substring(0, 3);
+				}
+				outerSpan.innerHTML = res;
+				node.appendChild(outerSpan);
+
+				var innerDiv1 = document.createElement("div");
+				innerDiv1.setAttribute("class", "weather-icon-forecast");
+				innerDiv1.setAttribute("width", "52");
+				innerDiv1.setAttribute("height", "52");
+				node.appendChild(innerDiv1);
+
+
+				var innerDiv2 = document.createElement("div");
+				innerDiv2.setAttribute("class", "high-low");
+
+				var spanMax = document.createElement("span");
+				spanMax.setAttribute("class", "high")
+				spanMax.innerHTML = Maximum + "&deg;F";
+				innerDiv2.appendChild(spanMax);
+
+				var breakLine = document.createElement("br");
+				innerDiv2.appendChild(breakLine);
+
+				var spanMin = document.createElement("span");
+				spanMin.setAttribute("class", "low")
+				spanMin.innerHTML = Minimum + "&deg;F";
+				innerDiv2.appendChild(spanMin);
+
+				node.appendChild(innerDiv2);
+				console.log(node);
+
+				document.getElementById("weatherForecastFor5Days").appendChild(node);
+			}
+		})
+}
+
 function getNews() {
 	var url = 'https://newsapi.org/v2/top-headlines?' +
 		'country=us&' +
@@ -10,10 +125,6 @@ function getNews() {
 	.then(function(response) {
 		console.log(JSON.stringify(response));
 		for (var i = 0; i < 4; i++) {
-			console.log(response.articles[i].source.name)
-			console.log(response.articles[i].title)
-			console.log(response.articles[i].url)
-			console.log(response.articles[i].publishedAt)
 
 			var node = document.createElement("li");
 			node.setAttribute("class", "card px-4 py-3 mb-2");
@@ -41,14 +152,14 @@ function getNews() {
 			var date = t.getDate();
 			var day = getDayOfTheWeek(t);
 			var month = getMonthOfTheYear(t);
-			time.innerHTML = day + " " + month + " " + date + " " + hours + " : " + minutes;
+			time.innerHTML = day + " " + month + " " + date + " Published at " + hours + ":" + minutes;
 
 			div.appendChild(span);
 			div.appendChild(time);
 
 			node.appendChild(div);
 
-			document.getElementById("myList").appendChild(node);
+			document.getElementById("newsList").appendChild(node);
 		}
 	})
 }
@@ -130,7 +241,18 @@ function checkDate() {
 }
 
 window.onload = function() {
+	// getZipCode();
+	checkCookie();
 	checkDate();
 	startTime();
 	getNews();
+
+	// if(document.cookie == null || document.cookie == "") {
+	// 	console.log('Cookie : ' + document.cookie);
+	// } else {
+	// 	console.log('Cookie : ' + document.cookie);
+	// 	checkDate();
+	// 	startTime();
+	// 	getNews();
+	// }
 }
