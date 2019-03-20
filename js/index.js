@@ -50,7 +50,7 @@ function checkCookie() {
 }
 
 function get5DaysWeatherForecast(zipcode) {
-	var url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + zipcode + '?apikey=xSWrDMQkGsFAsqDv71nMoKRRFlGrCtU5'
+	var url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + zipcode + '?apikey=' + <API_KEY>;
 	var req = new Request(url);
 	fetch(req)
 		.then(function(response) {
@@ -116,7 +116,7 @@ function get5DaysWeatherForecast(zipcode) {
 function getNews() {
 	var url = 'https://newsapi.org/v2/top-headlines?' +
 		'country=us&' +
-		'apiKey=d80b93ed851e468eaaa4974611ad2d94';
+		'apiKey=' + <API_KEY>;
 	var req = new Request(url);
 	fetch(req)
 	.then(function(response) {
