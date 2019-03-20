@@ -1,3 +1,4 @@
 /assets/build/*
 node_modules
 strings.txt
+package-lock.json
