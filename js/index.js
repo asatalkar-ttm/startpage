@@ -46,18 +46,95 @@ function checkCookie() {
 			setCookie("zipcode", zipcode, 30);
 		}
 	}
-	get5DaysWeatherForecast(zipcode);
+	getCityNameFromZipCode(zipcode);
 }
 
-function get5DaysWeatherForecast(zipcode) {
-	var url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + zipcode + '?apikey=' + <API_KEY>;
+function getCityNameFromZipCode(zipcode) {
+	// var url = 'http://ziptasticapi.com/' + zipcode;
+	var url = 'http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=' + '<API_KEY>' + '=' + zipcode;
+	var req = new Request(url);
+	fetch(req)
+		.then(function(response) {
+			return response.json();
+			console.log('Response STATUS: ' + response.status);
+		})
+		.then(function(response) {
+			// if (response.status === ) {}
+			console.log(response.status);
+			console.log("City " + response[0].LocalizedName);
+			var node1 = document.createElement("div");
+			node1.setAttribute("class", "card-title");
+
+			var h2 = document.createElement("h2");
+			h2.innerHTML = response[0].LocalizedName;
+
+			node1.appendChild(h2);
+
+			document.getElementById("city-name").appendChild(node1);
+			console.log(node1);
+			
+			var node2 = document.createElement("div");
+			node2.setAttribute("class", "card-subtitle mb-2 text-muted");
+
+			var hr = document.createElement("hr");
+			node2.appendChild(hr);
+			// node1.appendChild(node2);
+
+			document.getElementById("city-name").appendChild(node2);
+			console.log(node2);
+		})
+	getCurrentWeatherCondition(zipcode);
+}
+
+function getCurrentWeatherCondition(zipcode) {
+	var url = 'http://dataservice.accuweather.com/currentconditions/v1/' + zipcode + '?apikey=' + '<API_KEY>';
 	var req = new Request(url);
 	fetch(req)
 		.then(function(response) {
 			return response.json();
 		})
 		.then(function(response) {
-			console.log(response);
+			// console.log("weather text" + response.WeatherText);
+
+			var node = document.createElement("div");
+			node.setAttribute("class", "col-8");
+
+			var innerDiv1 = document.createElement("div");
+			innerDiv1.setAttribute("class", "weather-type");
+			innerDiv1.innerHTML = response[0].WeatherText;
+			node.appendChild(innerDiv1);
+
+			var span = document.createElement("span");
+			span.setAttribute("class", "number");
+			span.innerHTML = response[0].Temperature.Imperial.Value + "&deg;<span class=\"unit\">F</span>"
+			node.appendChild(span);
+
+			document.getElementById("currentWeather").appendChild(node);
+
+			var node1 = document.createElement("div");
+			node1.setAttribute("class", "col-4");
+
+			var innerDiv2 = document.createElement("div");
+			innerDiv2.setAttribute("class", "weather-icon-current");
+			innerDiv2.setAttribute("width", "84");
+			innerDiv2.setAttribute("height", "84");
+			node1.appendChild(innerDiv2);
+
+			document.getElementById("currentWeather").appendChild(node1);
+			// console.log(node);
+		})
+	get5DaysWeatherForecast(zipcode);
+}
+
+function get5DaysWeatherForecast(zipcode) {
+	var url = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/' + zipcode + '?apikey=' + '<API_KEY>';
+	var req = new Request(url);
+	fetch(req)
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(response) {
+			// console.log(response);
 			for (var i = 0; i < 5; i++) {
 				var Maximum = response.DailyForecasts[i].Temperature.Maximum.Value;
 				var Minimum = response.DailyForecasts[i].Temperature.Minimum.Value;
@@ -70,11 +147,11 @@ function get5DaysWeatherForecast(zipcode) {
 				outerSpan.setAttribute("class", "day");
 				var date = new Date(weatherDate);
 
-				var getNewDate = new Date();
+				var getTodaysDate = new Date();
 				var dayOfTheWeek = getDayOfTheWeek(date);
 				var res = "";
 				
-				if (date.getDate() === getNewDate.getDate()) {
+				if (date.getDate() === getTodaysDate.getDate()) {
 					res = "Today";
 				} else {
 					res = dayOfTheWeek.substring(0, 3);
@@ -106,7 +183,7 @@ function get5DaysWeatherForecast(zipcode) {
 				innerDiv2.appendChild(spanMin);
 
 				node.appendChild(innerDiv2);
-				console.log(node);
+				// console.log(node);
 
 				document.getElementById("weatherForecastFor5Days").appendChild(node);
 			}
@@ -116,14 +193,14 @@ function get5DaysWeatherForecast(zipcode) {
 function getNews() {
 	var url = 'https://newsapi.org/v2/top-headlines?' +
 		'country=us&' +
-		'apiKey=' + <API_KEY>;
+		'apiKey=' + '<API_KEY>';
 	var req = new Request(url);
 	fetch(req)
 	.then(function(response) {
 		return response.json();
 	})
 	.then(function(response) {
-		console.log(JSON.stringify(response));
+		// console.log(JSON.stringify(response));
 		for (var i = 0; i < 4; i++) {
 
 			var node = document.createElement("li");
