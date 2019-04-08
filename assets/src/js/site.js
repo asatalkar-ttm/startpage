@@ -1,7 +1,7 @@
 var corsUrl 		= 'https://cors-anywhere.herokuapp.com/';
-var zipCodeAPIKey 	= 'SdSpE1BrLTecgk9cVoCbLdRc196q6JJCva4RnIUxVExHzUeo3zmuk0A9BvnFtonH'; // https://www.zipcodeapi.com/
-var darkSkyAPIKey	= '7da5188b1388de4b208e12193b0a4f52'; // https://darksky.net/dev
-var newsapiOrgKey	= 'd80b93ed851e468eaaa4974611ad2d94'; // https://newsapi.org/
+var zipCodeAPIKey 	= '<API_KEY>'; // https://www.zipcodeapi.com/
+var darkSkyAPIKey	= '<API_KEY>'; // https://darksky.net/dev
+var newsapiOrgKey	= '<API_KEY>'; // https://newsapi.org/
 var bookmarks		= [
 	{
 		'name': 'Reddit',
